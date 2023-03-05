@@ -4,6 +4,7 @@ package com.fragile.inventory_service.controller;
 import com.fragile.inventory_service.dto.InventoryResponseDto;
 import com.fragile.inventory_service.service.InventoryService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 @RequestMapping("/api/inventory")
 public class InventoryController {
 
@@ -23,6 +25,7 @@ public class InventoryController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<InventoryResponseDto> isInStock(@RequestParam List<String> skuCode) {
+        log.info("inventory service call");
         return inventoryService.isInStock(skuCode);
     }
 }
